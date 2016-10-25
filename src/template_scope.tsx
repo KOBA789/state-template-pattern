@@ -14,6 +14,7 @@ class TemplateScope {
   public getTemplate(viewModel: Object) {
     const template = this.map.get(viewModel.constructor);
     if (template === undefined) {
+      console.log(viewModel, this.map);
       throw new Error('template is not found');
     }
 

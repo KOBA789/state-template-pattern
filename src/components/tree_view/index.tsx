@@ -28,26 +28,32 @@ class TreeView extends ScopedComponent<{
 
     return (
       <ul>
-        <DataTemplate type={Tree} children={({content}: { content: Tree }) =>
-          <li>
-            {content.value}
-            <ul>
-              {
-                content.children.map((node, i) => {
-                  return <ContentControl key={i} content={node} />;
-                })
-              }
-            </ul>
-          </li>
-        } />
-        <DataTemplate type={Leaf} children={({content}: { content: Leaf }) =>
-          <li>
-            {content.value}
-          </li>
-        } />
+        <DataTemplate type={Tree}>
+          {
+            ({content}: { content: Tree }) =>
+              <li>
+                {content.value}
+                <ul>
+                  {
+                    content.children.map((node, i) => {
+                      return <ContentControl key={i} content={node} />;
+                    })
+                  }
+                </ul>
+              </li>
+          }
+        </DataTemplate>
+        <DataTemplate type={Leaf}>
+          {
+            ({content}: { content: Leaf }) =>
+              <li>
+                {content.value}
+              </li>
+          }
+        </DataTemplate>
         <ContentControl content={root} />
       </ul>
-   );
+    );
   }
 }
 

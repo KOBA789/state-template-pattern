@@ -9,7 +9,7 @@ interface StatelessComponentPropTypes<T> {
 
 interface PropTypes<T> {
   type: Function;
-  children: React.StatelessComponent<StatelessComponentPropTypes<T>>;
+  children?: React.StatelessComponent<StatelessComponentPropTypes<T>>;
 }
 
 class DataTemplate extends React.Component<PropTypes<any>, {}> {
