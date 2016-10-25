@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import TemplateScope from '../../template_scope';
-import ContentPresenter from '../../content_presenter';
+import ContentControl from '../../content_control';
 
 import {
   Node,
@@ -11,14 +11,14 @@ import {
 
 const scope = new TemplateScope();
 
-scope.registerTemplate<Tree>(Tree, ({children, model}) => {
+scope.registerTemplate<Tree>(Tree, ({children, content}) => {
   return (
     <li>
-      {model.value}
+      {content.value}
       <ul>
         {
-          model.children.map((node, i) => {
-            return <ContentPresenter key={i} scope={scope} model={node} />;
+          content.children.map((node, i) => {
+            return <ContentControl key={i} scope={scope} content={node} />;
           })
         }
       </ul>
@@ -26,10 +26,10 @@ scope.registerTemplate<Tree>(Tree, ({children, model}) => {
   );
 });
 
-scope.registerTemplate<Leaf>(Leaf, ({children, model}) => {
+scope.registerTemplate<Leaf>(Leaf, ({children, content}) => {
   return (
     <li>
-      {model.value}
+      {content.value}
     </li>
   );
 });
@@ -45,7 +45,7 @@ const tree = new Tree('root', [
 
 const TreeView = ({root}: { root: Node }) => (
   <ul>
-    <ContentPresenter scope={scope} model={root} />
+    <ContentControl scope={scope} content={root} />
   </ul>
 );
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface PropTypes<T> {
-  model: T;
+  content: T;
   children?: React.ReactNode;
 }
 type Template<T> = React.StatelessComponent<PropTypes<T>>;
